@@ -1,17 +1,14 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
-import { number } from "zod";
-type Props = {};
+import { useState } from "react";
 
-const page = (props: Props) => {
+const Task2Page = () => {
   const [squares, setSquares] = useState<boolean[]>(Array(9).fill(false));
   const [squaresInd, setSquaresInd] = useState<number[]>([]);
   const [resetInProgress, setResetInProgress] = useState<boolean>(false);
 
   const handleClick = (index: number) => {
     if (resetInProgress) return;
-    //if (squares[index]) return;
     if (index === 8) {
       resetAllSquares();
       return;
@@ -21,14 +18,13 @@ const page = (props: Props) => {
       newSquares[index] = !newSquares[index];
       return newSquares;
     });
-    //console.log(index);
     setSquaresInd([index, ...squaresInd]);
   };
 
   const resetAllSquares = () => {
     setResetInProgress(true);
     let delay = 0;
-    squaresInd.forEach((index, key) => {
+    squaresInd.forEach((index, _unused) => {
       setTimeout(() => {
         setSquares((prev) => {
           const newSquares = [...prev];
@@ -66,4 +62,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Task2Page;
